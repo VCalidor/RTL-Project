@@ -9,15 +9,22 @@ describe('Testa o componente pokemonDetails.js', () => {
     renderWithRouter(<App />);
     const link = screen.getByRole('link', { name: /More details/i });
     fireEvent.click(link);
+    const p = pokemons[0];
 
-    const text = screen.getByText(`${pokemons[0].name} Details`);
-    expect(text).toBeInTheDocument();
+    const pokemonDetail = screen.getByRole(
+      'heading',
+      { name: `${pokemons[0].name} Details`, level: 2 },
+    );
+    expect(pokemonDetail).toBeInTheDocument();
 
     const noExiste = screen.queryByRole('link', { name: /More Details/i });
     expect(noExiste).not.toBeInTheDocument();
 
     const h2 = screen.getByRole('heading', { level: 2, name: /Summary/i });
     expect(h2).toBeInTheDocument();
+
+    const text = screen.getByText(p.summary);
+    expect(text).toBeInTheDocument();
   });
   it('Se existe na página uma seção com os mapas com localizações do pokémon', () => {
     renderWithRouter(<App />);
