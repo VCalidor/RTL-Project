@@ -36,8 +36,8 @@ describe('Testa o componente pokemonDetails.js', () => {
 
     const map = screen.getAllByRole('img', { name: /Pikachu location/ });
     p.foundAt.forEach((location, index) => {
-      const local = screen.getByText(location.location);
-      expect(local && map[index]).toBeInTheDocument();
+      const localization = screen.getByText(location.location);
+      expect(localization && map[index]).toBeInTheDocument();
       expect(map[index]).toHaveAttribute('src', p.foundAt[index].map);
       expect(map[index].alt).toBe(`${p.name} location`);
     });
